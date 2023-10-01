@@ -38,7 +38,7 @@ class DataBrokerService {
    * @returns {any} - parameter required for unsubscribing 
    */
   subscribeToCounterData(handlerFunction) {
-    console.log('subscribeToCounterData - handlerFunction: ', handlerFunction)
+
     return this.#counterDataProvider$.subscribe(handlerFunction)
   }
 
