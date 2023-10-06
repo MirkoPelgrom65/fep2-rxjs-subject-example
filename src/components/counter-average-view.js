@@ -1,44 +1,69 @@
 import { LitElement, css, html } from 'lit'
 import { dataBrokerService } from '../services';
 
+/**
+ * View that displays the Average value of a collection of counters.
+ * The view is a data consumer of the dataBrokerService
+ */
 export class CounterAverageView extends LitElement {
   
   static get properties() {
     return {
       /** The number of times the button has been clicked. */
-      total: { type: Number },
+      average: { type: Number },
     }
   }
 
   constructor() {
     super()
-    this.total = 0;
+    this.average = 0;
   }
 
+  /**
+   * WebComponent callback function
+   * Called when the component is added to the DOM 
+   */
   connectedCallback() {
     super.connectedCallback()
+    // Subscribe to the dataBrokerService
     this.observer = dataBrokerService.subscribeToCounterData(
       counterMap => {
-        this.total = 0;
+        // reset totalValue
+        let total = 0;
+        // For each element in the Map add the value to the totalValue
         counterMap.forEach((value, key) => {
-          this.total += value
+          total += value
         })
 
-        this.total = this.total / counterMap.size
+        // Devide the total value with the number of counters
+        if (counterMap.size > 0) {
+          this.average = total / counterMap.size
+        } else {
+          this.average = 0
+        } 
       }
     )
   }
 
+  /**
+   * WebComponent callback function
+   * Called when the component is removed from the DOM 
+   */
   disconnectedCallback() {
+    // Unsubscribe from the service
     dataBrokerService.unsubscribeFromCounterData(this.observer)
     super.disconnectedCallback()
   }
 
+  /**
+   * LitElement callback function
+   * Called whenever a property has been changed
+   */
   render() {
     return html`
       <h1>Counter Average</h1>
       <div class="card">
-        <div>${this.total}</div>
+        <div>${this.average}</div>
       </div>
     `
   }

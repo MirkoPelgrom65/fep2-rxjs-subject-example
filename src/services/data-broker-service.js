@@ -1,11 +1,13 @@
 import { Subject } from 'rxjs';
 
 class DataBrokerService {
+  // Container for all counter data
   #counterData = new Map();
+  // member to hold Subject Observable
   #counterDataProvider$ = null;
 
   constructor() {
-    //TODO - uitbreiden
+    // Create a new Subject
     this.#counterDataProvider$ = new Subject();
   }
 
@@ -20,8 +22,6 @@ class DataBrokerService {
   counterUpdate(counterName, counterValue) {
     // Update the map data
     this.#counterData.set(counterName, counterValue)
-
-    
 
     // Inform all listeners
     this.#counterDataProvider$.next(this.#counterData)
@@ -38,7 +38,6 @@ class DataBrokerService {
    * @returns {any} - parameter required for unsubscribing 
    */
   subscribeToCounterData(handlerFunction) {
-
     return this.#counterDataProvider$.subscribe(handlerFunction)
   }
 
@@ -55,4 +54,5 @@ class DataBrokerService {
   }
 }
 
+// Create a singleton and expose through export
 export const dataBrokerService = new DataBrokerService()

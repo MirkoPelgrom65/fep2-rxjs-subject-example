@@ -15,6 +15,10 @@ export class CounterTotalView extends LitElement {
     this.total = 0;
   }
 
+  /**
+   * WebComponent callback function
+   * Called when the component is added to the DOM 
+   */
   connectedCallback() {
     super.connectedCallback()
     this.observer = dataBrokerService.subscribeToCounterData(
@@ -27,11 +31,19 @@ export class CounterTotalView extends LitElement {
     )
   }
 
+  /**
+   * WebComponent callback function
+   * Called when the component is removed from the DOM 
+   */
   disconnectedCallback() {
     dataBrokerService.unsubscribeFromCounterData(this.observer)
     super.disconnectedCallback()
   }
 
+  /**
+   * LitElement callback function
+   * Called whenever a property has been changed
+   */
   render() {
     return html`
       <h1>Counter Total</h1>
