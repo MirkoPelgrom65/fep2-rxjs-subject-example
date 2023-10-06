@@ -4,10 +4,10 @@
 
 
 # FEP2 RxJS-Subjects example
-Exampe code based on vite standard application that demonstrates the usage of the RxJS class Subject/BehaviourSubject
+Exampe code based on vite standard application that demonstrates the usage of the RxJS class Subject
 
-## RxJS Subject/BehaviourSubject
-The RxJS library adds Observables to a javascript project. A Subject (and a BehaviourSubject) is a special kind of Observable. The Front End Programming 2 (FEP2) course contains the concept of Observables. This example demonstrates how a Subject can be used to create code where any number producer components (Lit Elements) multicast their values to any number of consumer components (also Lit Elements).
+## RxJS Subject
+The RxJS library adds Observables to a javascript project. A Subject is a special kind of Observable. The Front End Programming 2 (FEP2) course contains the concept of Observables. This example demonstrates how a Subject can be used to create code where any number producer components (Lit Elements) multicast their values to any number of consumer components (also Lit Elements).
 
 [RxJS Subject documentation](https://rxjs.dev/guide/subject)
 
